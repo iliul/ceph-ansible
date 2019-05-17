@@ -39,6 +39,7 @@ cluster: ceph
 mon_group_name: mons
 osd_group_name: osds
 mgr_group_name: mgrs
+client_group_name: clients
 
 ############
 # PACKAGES #
@@ -98,8 +99,8 @@ ceph_conf_overrides:
     auth_cluster_required : cephx
     auth_service_required : cephx
     auth_client_required : cephx
-    osd_pool_default_pg_num : 64   
-    osd_pool_default_pgp_num : 64
+    osd_pool_default_pg_num : 128
+    osd_pool_default_pgp_num : 128
     debug_tp : 0
     debug_timer : 0
     debug_throttle : 0
@@ -160,7 +161,7 @@ ceph_conf_overrides:
     mon_osd_full_ratio : 0.95
     mon_osd_down_out_interval : 3600
     mon_clock_drift_allowed : 0.15
-    osd_pool_erasure_code_stripe_width : 65535
+    osd_pool_erasure_code_stripe_width : 65536
     osd_pool_default_erasure_code_profile : "plugin=isa technique=reed_sol_van k=4 m=2 ruleset-root=default crush-failure-domain=host"
     bluestore_block_create: true
     bluestore_block_db_size: 193273528320

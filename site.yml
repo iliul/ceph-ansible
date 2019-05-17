@@ -5,6 +5,7 @@
   - mons
   - osds
   - mgrs
+  - clients
 
   gather_facts: false
 
@@ -70,3 +71,11 @@
     - ceph-config
     - ceph-osd
 
+- hosts: clients
+  gather_facts: false
+  become: True
+  roles:
+    - ceph-defaults
+    - ceph-common
+    - ceph-config
+    - ceph-client

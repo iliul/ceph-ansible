@@ -1,0 +1,23 @@
+---
+dummy:
+
+###########
+# GENERAL #
+###########
+
+copy_admin_key: true
+user_config: true
+
+pools:
+  - { name: images, pgs: "{{ ceph_conf_overrides.global.osd_pool_default_pg_num }}" }
+  - { name: template, pgs: "{{ ceph_conf_overrides.global.osd_pool_default_pg_num }}" }
+  - { name: backup, pgs: "{{ ceph_conf_overrides.global.osd_pool_default_pg_num }}" }
+  - { name: ebs, pgs: "{{ ceph_conf_overrides.global.osd_pool_default_pg_num }}" }
+  - { name: rds, pgs: "{{ ceph_conf_overrides.global.osd_pool_default_pg_num }}" }
+
+keys:
+  - { name: client.images, key: "AQDkZ95cTNg3JhAABb5DV54ahqFQdB6A/3uENQ==", mon_cap: "allow r", osd_cap: "allow class-read object_prefix rbd_children, allow rwx pool=images", mode: "0600", acls: [] }
+  - { name: client.template, key: "AQByaN5cTvkbFBAA2BGZhVFn/r4HKT94ntUt4A==", mon_cap: "allow r", osd_cap: "allow class-read object_prefix rbd_children, allow rwx pool=template", mode: "0600", acls: [] }
+  - { name: client.backup, key: "AQC8aN5cXV/8FhAAy/CtVLSBl7ntaPCJaVjlGQ==", mon_cap: "allow r", osd_cap: "allow class-read object_prefix rbd_children, allow rwx pool=backup", mode: "0600", acls: [] }
+  - { name: client.ebs, key: "AQDQaN5cUniwBBAAdNuhL0+BPRLIhqIJwiAaxw==", mon_cap: "allow r", osd_cap: "allow class-read object_prefix rbd_children, allow rwx pool=ebs", mode: "0600", acls: [] }
+  - { name: client.rds, key: "AQDeaN5c4GZEDBAA8pHAKYXFXM1yniPwNNx4VQ==", mon_cap: "allow r", osd_cap: "allow class-read object_prefix rbd_children, allow rwx pool=rds", mode: "0600", acls: [] }
