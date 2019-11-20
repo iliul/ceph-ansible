@@ -180,7 +180,24 @@
   when:
     - devices is defined
     - inventory_hostname in groups.get(osd_group_name, [])
+<<<<<<< HEAD
     - not osd_auto_discovery|default(False)
+=======
+    - not osd_auto_discovery | default(False) | bool
+
+- name: set_fact devices generate device list when osd_auto_discovery
+  set_fact:
+    devices: "{{ (devices | default([]) + [ item.key | regex_replace('^', '/dev/') ]) | unique }}"
+  with_dict: "{{ ansible_devices }}"
+  when:
+    - osd_auto_discovery | default(False) | bool
+    - ansible_devices is defined
+    - item.value.removable == "0"
+    - item.value.sectors != "0"
+    - item.value.partitions|count == 0
+    - item.value.holders|count == 0
+    - item.key is not match osd_auto_discovery_exclude
+>>>>>>> 23b1f4389... facts: avoid duplicated element in devices list
 
 - name: set_fact ceph_uid for debian based system - non container
   set_fact:
